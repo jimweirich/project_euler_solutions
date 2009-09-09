@@ -3,8 +3,13 @@ require 'primes'
 class Integer
 
   def divisors
-    result = []
-    i = 1
+    proper_divisors << self
+  end
+
+  def proper_divisors
+    return [] if self == 1
+    result = [1]
+    i = 2
     while i*i <= self
       if self%i == 0
         result << i

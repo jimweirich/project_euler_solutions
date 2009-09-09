@@ -13,6 +13,15 @@ class DivisorTest < Test::Unit::TestCase
     assert_equal [1,2,3,4,6,9,12,18,36], 36.divisors
   end
 
+  def test_proper_divisors
+    assert_equal [], 1.proper_divisors
+    assert_equal [1], 2.proper_divisors    
+    assert_equal [1], 3.proper_divisors    
+    assert_equal [1,2], 4.proper_divisors    
+    assert_equal [1,2,4,7,14], 28.proper_divisors
+    assert_equal [1,2,3,4,6,9,12,18], 36.proper_divisors
+  end
+
   def test_divisor_count
     assert_equal 1.divisors.size,  1.divisor_count
     assert_equal 2.divisors.size,  2.divisor_count
