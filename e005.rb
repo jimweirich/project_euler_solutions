@@ -1,9 +1,30 @@
 #!/usr/bin/env ruby
 
-# NOTE: This is really slow.
+require 'primes'
 
-n = 1
-while ! (2..20).all? { |d| n%d == 0 }
-  n += 1
+NORMAL = Primes.new.while { |p| p < 20 }
+
+# Convert a number to a list of prime factor exponents.
+def prime_vector(n)
+  NORMAL.map { |p|
+    c = 0
+    while (n % p) == 0
+      c += 1
+      n = n / p
+    end
+    c
+  }
 end
-p n
+
+def max_vector(a,b)
+  (0...a.size).map { |i| [a[i], b[i]].max }
+end
+
+def prime_vector_to_i(vec)
+  (0...vec.size).inject(1) { |r, i| r * NORMAL[i]**vec[i] }
+end
+
+v = [0] * NORMAL.size
+(2..20).each do |i| v = max_vector(v, prime_vector(i)) end
+p prime_vector_to_i(v)
+
