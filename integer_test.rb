@@ -21,6 +21,14 @@ class DivisorTest < Test::Unit::TestCase
     assert_equal 28.divisors.size, 28.divisor_count
     assert_equal 36.divisors.size, 36.divisor_count
   end
+
+  def test_prime_factors
+    assert_equal [], 1.prime_factors
+    assert_equal [1], 2.prime_factors
+    assert_equal [2], 4.prime_factors
+    assert_equal [0, 1], 3.prime_factors
+    assert_equal [1, 2, 3], (2 * 3**2 * 5**3).prime_factors
+  end
 end
 
 class FactorialTest < Test::Unit::TestCase
