@@ -6,4 +6,11 @@ class Integer
   end
 end
 
-p (100..999).map { |i| (i..999).map { |j| i*j } }.flatten.select { |n| n.palindrome? }.max
+answer = 0
+(100..999).each do |i|
+  (i..999).each do |j|
+    n = i*j
+    answer = n if n > answer && n.palindrome?
+  end
+end
+p answer
