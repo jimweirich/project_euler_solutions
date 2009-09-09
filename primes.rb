@@ -3,18 +3,28 @@ class Primes
   
   attr_reader :current
   
-  def initialize
+  def initialize(max=10001)
+    @sieve = [false] * max
     @primes = []
   end
   
   def next_prime
     @current ||= 1
     @current += 1
-    while @primes.any? { |p| (current % p) == 0 }
+    while @sieve[@current]
       @current += 1
     end
+    fail "Out of primes (#{@sieve.size})" if @current >= @sieve.size
     @primes << @current
+    mark_current
     @current
+  end
+
+  def [](index)
+    while @primes.size <= index
+      next_prime
+    end
+    @primes[index]
   end
 
   def primes(n)
@@ -29,5 +39,15 @@ class Primes
       next_prime
     end
     result
+  end
+
+  private
+
+  def mark_current
+    n = @current
+    while n < @sieve.size
+      @sieve[n] = true
+      n += @current
+    end
   end
 end
