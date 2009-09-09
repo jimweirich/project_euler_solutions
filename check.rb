@@ -22,7 +22,7 @@ def check(prog, answer)
 end
 
 if ARGV.empty?
-  ANSWERS.keys.each do |prog|
+  ANSWERS.keys.sort.each do |prog|
     answer = ANSWERS[prog]
     check(prog, answer)
   end
