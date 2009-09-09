@@ -2,6 +2,7 @@
 
 require 'ext/integer'
 
-# This is not giving the right answer!
-# Need to re-evalutate.
-p 20.fact / (10.fact * 10.fact)
+# N = 5
+N = 1000
+
+p (1..N).inject(0) { |r, n| r + n.english_size }
