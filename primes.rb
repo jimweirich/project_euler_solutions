@@ -34,17 +34,25 @@ class Primes
   def while()
     result = []
     next_prime
-    while yield(current )
+    while yield(current)
       result << current
       next_prime
     end
     result
   end
 
+  def prime?(n)
+    return false if n <= 0
+    while current.nil? || current < n
+      next_prime
+    end
+    ! @sieve[n]
+  end
+
   private
 
   def mark_current
-    n = @current
+    n = @current + @current
     while n < @sieve.size
       @sieve[n] = true
       n += @current

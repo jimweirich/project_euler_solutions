@@ -53,4 +53,17 @@ class PrimesTest < Test::Unit::TestCase
       p[4]      
     end
   end
+
+  def test_prime?
+    p = Primes.new(12)
+    assert ! p.prime?(-1)
+
+    assert p.prime?(2)
+    assert p.prime?(3)
+    assert p.prime?(5)
+
+    assert ! p.prime?(4)
+    assert ! p.prime?(6)
+    assert ! p.prime?(9)
+  end
 end
